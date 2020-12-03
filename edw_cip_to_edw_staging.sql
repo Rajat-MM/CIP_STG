@@ -44,7 +44,7 @@ INSERT
 	LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 		ADT.record_aligner = 1
 		and ADT.batch_name = 'SFMC_Send_Log_to_CIP'
-	WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+	WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_bounces_extension */
 Truncate table edw_staging.cip_sfmc_send_log_bounces_extension;
@@ -108,7 +108,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT
 		ON ADT.record_aligner = 1
 		and ADT.batch_name = 'SFMC_Send_Log_to_CIP'
-		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_campaign */
 Truncate table edw_staging.cip_sfmc_send_log_campaign;
@@ -153,7 +153,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			AND ADT.batch_name = 'SFMC_Send_Log_to_CIP'
-			WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+			WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate the satging table */
 TRUNCATE TABLE edw_staging.cip_sfmc_send_log_clicks;
@@ -228,7 +228,7 @@ SELECT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			and ADT.batch_name = 'SFMC_Send_Log_to_CIP'
-		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /*Truncate the staging table*/
 truncate table edw_staging.cip_sfmc_send_log_clicks_extension;
@@ -280,7 +280,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT
 		ON ADT.record_aligner = 1
 		and ADT.batch_name = 'SFMC_Send_Log_to_CIP' 
-		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_complaints */
 Truncate table edw_staging.cip_sfmc_send_log_complaints;
@@ -323,7 +323,7 @@ INSERT
 			LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			and ADT.batch_name = 'SFMC_Send_Log_to_CIP' 
-			WHERE SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+			WHERE SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_lists */
 Truncate table edw_staging.cip_sfmc_send_log_lists;
@@ -359,7 +359,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			and ADT.batch_name = 'SFMC_Send_Log_to_CIP' 
-		WHERE row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /*Truncate Stage table*/
 TRUNCATE TABLE EDW_STAGING.CIP_SFMC_SEND_LOG_MMFA_PRINTMAIL;
@@ -536,7 +536,7 @@ INSERT INTO EDW_STAGING.CIP_SFMC_SEND_LOG_MMFA_PRINTMAIL
 			WHERE ( CLEAN_STRING(SRC.dim_party_natural_key_hash_uuid::varchar) is null
 			 OR REGEXP_ILIKE(DIM_PARTY_NATURAL_KEY_HASH_UUID::VARCHAR, '[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'))
 			AND CLEAN_STRING(SRC.SFMC_SUBSCRIBER_ID::VARCHAR) is not null 
-			AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+			AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_opens */
 Truncate table edw_staging.cip_sfmc_send_log_opens;
@@ -603,7 +603,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			and ADT.batch_name = 'SFMC_Send_Log_to_CIP' 
-		WHERE SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* TRUNCATE STAGE TABLE EDW_STAGING.CIP_SFMC_SEND_LOG_SEND_LOG */
 TRUNCATE TABLE EDW_STAGING.CIP_SFMC_SEND_LOG_SEND_LOG;
@@ -705,7 +705,7 @@ TRUNCATE TABLE EDW_STAGING.CIP_SFMC_SEND_LOG_SEND_LOG;
 		      LEFT JOIN EDW_AUDIT.ETL_BATCH_AUDIT_VW ADT 
 			  ON ADT.RECORD_ALIGNER = 1
 			  AND ADT.BATCH_NAME = 'SFMC_Send_Log_to_CIP'
-			  WHERE SRC.ROW_NUM=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+			  WHERE SRC.ROW_NUM=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_sendjobs */
 Truncate table edw_staging.cip_sfmc_send_log_sendjobs;
@@ -755,7 +755,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			and ADT.batch_name = 'SFMC_Send_Log_to_CIP' 
-		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_sent */
 Truncate table edw_staging.cip_sfmc_send_log_sent;
@@ -799,7 +799,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			and ADT.batch_name = 'SFMC_Send_Log_to_CIP'
-		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_unsubs */
 Truncate table edw_staging.cip_sfmc_send_log_unsubs;
@@ -842,7 +842,7 @@ INSERT
 		LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			and ADT.batch_name = 'SFMC_Send_Log_to_CIP' 
-		WHERE SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+		WHERE SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /*Truncate Stage table*/
 TRUNCATE TABLE EDW_STAGING.CIP_SFMC_SEND_LOG_WP_CUSTOM_PRINTMAIL;
@@ -1007,7 +1007,7 @@ SELECT
 	WHERE (CLEAN_STRING(SRC.dim_party_natural_key_hash_uuid::varchar) is null
 	OR REGEXP_ILIKE(DIM_PARTY_NATURAL_KEY_HASH_UUID::VARCHAR,'[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'))
 	AND CLEAN_STRING(SRC.SFMC_SUBSCRIBER_ID::VARCHAR) is not null 
-	AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+	AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /*Truncate Stage table*/
 TRUNCATE TABLE EDW_STAGING.CIP_SFMC_SEND_LOG_WP_PRINTMAIL;
@@ -1170,7 +1170,7 @@ AND ADT.BATCH_NAME = 'SFMC_Send_Log_to_CIP'
 WHERE ( CLEAN_STRING(SRC.dim_party_natural_key_hash_uuid::varchar) is null
 			 OR REGEXP_ILIKE(DIM_PARTY_NATURAL_KEY_HASH_UUID::VARCHAR, '[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'))
 			AND CLEAN_STRING(SRC.SFMC_SUBSCRIBER_ID::VARCHAR) is not null 
-	AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+	AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
 
 /*Truncate Stage table*/
 TRUNCATE TABLE EDW_STAGING.CIP_SFMC_SEND_LOG_WS_PRINTMAIL;
@@ -1335,7 +1335,7 @@ SELECT
 	WHERE (CLEAN_STRING(SRC.dim_party_natural_key_hash_uuid::varchar) is null
 		OR REGEXP_ILIKE(DIM_PARTY_NATURAL_KEY_HASH_UUID::VARCHAR,'[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'))
 	AND CLEAN_STRING(SRC.SFMC_SUBSCRIBER_ID::varchar) is not null 
-	AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6); 
+	AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6); 
 	
 /* Truncate Stage Table edw_staging.cip_sfmc_send_log_customer_response */
 Truncate table edw_staging.cip_sfmc_send_log_customer_response;
@@ -1395,4 +1395,4 @@ INSERT
 			LEFT JOIN edw_audit.etl_batch_audit_vw ADT ON
 			ADT.record_aligner = 1
 			AND ADT.batch_name = 'SFMC_Send_Log_to_CIP'
-			WHERE CLEAN_STRING(SRC.sfmc_subscriber_id::varchar) is not null and SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :end_date::timestamp(6);
+			WHERE CLEAN_STRING(SRC.sfmc_subscriber_id::varchar) is not null and SRC.row_num=1 AND SRC.row_process_dtm BETWEEN :start_date::timestamp(6) AND :last_date::timestamp(6);
